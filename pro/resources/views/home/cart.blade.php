@@ -358,7 +358,8 @@
 					
 				</table>
 				{{csrf_field()}}
-					<input  type="submit"value="创建订单">
+					
+			<input  type="submit"value="创建订单">
 				<a href="/index">继续购物</a>
 
 				<div class="" style="width: 100%; text-align: right; margin-top: 10px;">

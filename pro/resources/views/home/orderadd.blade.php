@@ -24,6 +24,15 @@
 				width:100%;
 				height:200px;
 				position: relative;
+				background-color: #cccccc;
+			}
+			.zhifu{
+				width:200px;
+				height:40px;
+				font-size:20px;
+				position: relative;
+				border: 1px red solid;
+				background-color: green;
 			}
 
 		</style>
@@ -327,55 +336,46 @@
 	<form action="addcreate"method="post">
 		<input type="hidden"value=""name="address_id">
 		<input type="hidden"value="{{session('id')}}"name="user_id">
-		<div class="open_new"style="float:left;text-align:left">
-			<lable>支付方式</lable>
+		<div class="zhifu">
+			<lable></h3>支付方式</h3></lable>
 			<lable><input type="radio"name="pay"value="支付宝">支付宝</lable>
 			<lable><input type="radio"name="pay"value="银联支付">银联支付</lable>
 		</div>
 			{{csrf_field()}}
-		<input type="submit"value="支付">
+		<input class=""type="submit"value="立即支付">
 	</form>
 		<div class="shopping_content">
 			<p>已选商品</p>
 			<div class="shopping_table">
 				<table border="1" bordercolor="#cccccc" cellspacing="0" cellpadding="0" style="width: 100%; text-align: center;">
 					<tr>
+						<th>商品id</th>
 						<th>商品图片</th>
 						<th>商品名称</th>
-						<th>商品属性</th>
 						<th>商品价格</th>
 						<th>商品数量</th>
-						<th>商品操作</th>
 					</tr>
 				
-					
+				@foreach($h as $k=>$v)
 					<tr>
 						<td>
+							{{$v['id']}}
+						</td>
+						<td>
 
-							<a><img src="" width="100px"height="100px"/></a>
+							<a><img src="/uploads/{{$v['photo']}}" width="100px"height="100px"/></a>
 						</td>
-						<td><span></span></td>
+						<td><span>{{$v['goodsname']}}</span></td>
+						
 						<td>
-							<div class="">
-								<span id="">颜色</span>：<span></span>
-							</div>
-							<div class="">
-								<span id="">尺码</span>：<span></span>
-							</div>
+							<span class="span_momey">{{$v['price']}}</span>
 						</td>
 						<td>
-							<span class="span_momey"></span>
-						</td>
-						<td>
+						{{$v['num']}}
 							
-
-							<input class="momey_input" type="" name=""  value=""  />
-							
-						<td>
-							<a href="/cartdel/" >删除</a>
 						</td>
 					</tr>
-					
+				@endforeach
 				
 				</table>
 					

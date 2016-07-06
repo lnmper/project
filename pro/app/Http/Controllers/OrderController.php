@@ -15,10 +15,19 @@ class OrderController extends Controller
         //dd($request);
     	session(['order_goods'=>$request->only('goods')['goods']]);
     	//dd(session('order_goods'));
+        $h=[];
+        foreach(session('order_goods') as $k=>$v){
+            
+            $da=DB::table('goods')->where('goodsid','=',$v["'id'"])->first();
+            $h[$k]['id']=$v["'id'"];
+            $h[$k]['num']=$v["'num'"];
+            $h[$k]['price']=$v["'price'"];
+            $h[$k]['photo']=$da->photo;
+            $h[$k]['goodsname']=$da->goodsname;
+        }
     	$address=DB::table('address')->where('user_id','=',session('id'))->get();
-    	//dd($address);
-
-    	return view('home.orderadd',['address'=>$address]);
+    	
+    	return view('home.orderadd',['address'=>$address,'h'=>$h]);
 
     }
     public function jilian(){
