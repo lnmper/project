@@ -1,0 +1,18 @@
+<?php
+echo"<meta charset='utf-8'>";
+public function getCates(){
+    	$res=DB::select('select *,concat(path,",",id) as paths form cates order by paths');
+    	foreach($res as $k=>$v){
+    		$em=explode(',',$v->path);
+    		$len=count($em)-1;
+    		$res[$k]->name=str_repeat('|**',$len).$v->name;
+    	}
+    	return $res;
+    }
+
+
+
+
+
+
+?>
